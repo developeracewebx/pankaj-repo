@@ -44,7 +44,7 @@ export default function Home() {
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <h1 className="text-2xl	text-red-500	">{browserName}</h1>
       {/* {loading && <div>Loading...</div>} */}
-      <CustomView condition={browserName === "Safari"}>
+      <CustomView condition={browserName === "Mobile Safari"}>
         <video ref={safariVideoRef} autoPlay playsInline></video>
         <button
           className="bg-red-500	text-white	px-3.5 py-5"
