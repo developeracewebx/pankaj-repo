@@ -62,6 +62,17 @@ export default function Home() {
         </button>
         <p className="text-red-600	">Safari</p>
       </CustomView>
+
+      <CustomView condition={browserName === "Safari"}>
+        <video ref={safariVideoRef} autoPlay playsInline></video>
+        <button
+          className="bg-red-500	text-white	px-3.5 py-5"
+          onClick={handlePermissionsSafari}
+        >
+          Click for Camera & audio Permission
+        </button>
+        <p className="text-red-600	">Safari</p>
+      </CustomView>
       <CustomView condition={browserName === "Chrome"}>
         <video
           ref={chromeVideoRef}
