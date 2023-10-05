@@ -20,15 +20,25 @@ export default function Home() {
     }
   };
 
+  const handlePermissionsSafari = async (videoRef) => {
+    let permissions = { video: true, audio: true };
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia(permissions);
+      videoRef.current.srcObject = stream;
+      setLoading(false);
+      console.log("Camera access granted!");
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+
   useEffect(() => {
-    if (browserName === "Safari") {
-      handlePermissions(safariVideoRef);
-    } else if (browserName === "Chrome") {
+    if (browserName === "Chrome") {
       handlePermissions(chromeVideoRef);
     } else if (browserName === "Firefox") {
       handlePermissions(firefoxVideoRef);
     }
-  }, []);
+  }, [browserName]);
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
@@ -40,6 +50,9 @@ export default function Home() {
           playsInline
           style={{ display: loading ? "none" : "block" }}
         ></video>
+        <button onClick={handlePermissionsSafari}>
+          Click for Camera & audio Permission
+        </button>
         Safari
       </CustomView>
       <CustomView condition={browserName === "Chrome"}>
