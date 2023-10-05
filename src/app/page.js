@@ -92,7 +92,12 @@ export default function Home() {
       <h1 className="text-2xl	text-red-500	">{browserName}</h1>
       {/* {loading && <div>Loading...</div>} */}
       <CustomView condition={browserName === "Mobile Safari"}>
-        <video ref={safariVideoRef} autoPlay playsInline></video>
+        <video
+          ref={safariVideoRef}
+          autoPlay={true}
+          playsInline={true}
+          muted={true}
+        ></video>
         <button
           className="bg-red-500	text-white	px-3.5 py-5"
           onClick={handlePermissionsSafari}
@@ -104,9 +109,10 @@ export default function Home() {
 
       <CustomView condition={browserName === "Safari"}>
         <video
+          autoPlay={true}
+          playsInline={true}
+          muted={true}
           ref={safariVideoRef}
-          autoPlay
-          playsInline
           id="videoElement"
         ></video>
         <button
