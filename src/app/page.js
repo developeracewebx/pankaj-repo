@@ -42,6 +42,7 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
+      <h1 className="text-2xl	text-red-500	">{browserName}</h1>
       {/* {loading && <div>Loading...</div>} */}
       <CustomView condition={browserName === "Safari"}>
         <video ref={safariVideoRef} autoPlay playsInline></video>
