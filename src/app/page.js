@@ -62,8 +62,10 @@ export default function Home() {
       .catch((err) => showErr(err));
 
     function showCam(stream) {
-      let video = document.querySelector("video");
-      videoRef.srcObject = stream;
+      const videoElement = document.getElementById("videoElement");
+
+      // let video = document.querySelector("video");
+      videoElement.srcObject = stream;
     }
 
     function showErr(err) {
@@ -101,7 +103,12 @@ export default function Home() {
       </CustomView>
 
       <CustomView condition={browserName === "Safari"}>
-        <video ref={safariVideoRef} autoPlay playsInline></video>
+        <video
+          ref={safariVideoRef}
+          autoPlay
+          playsInline
+          id="videoElement"
+        ></video>
         <button
           className="bg-red-500	text-white	px-3.5 py-5"
           onClick={handlePermissionsSafari}
