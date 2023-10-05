@@ -63,7 +63,7 @@ export default function Home() {
 
     function showCam(stream) {
       let video = document.querySelector("video");
-      videoRef.current.srcObject = stream;
+      videoRef.srcObject = stream;
     }
 
     function showErr(err) {
