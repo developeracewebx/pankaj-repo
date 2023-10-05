@@ -29,8 +29,8 @@ export default function Home() {
       console.log("Camera access granted!");
       alert("if condition work");
     } catch (err) {
-      alert("else cond", err.message);
-      console.error(err.message);
+      alert("else path", err);
+      console.error(err);
     }
   };
 
