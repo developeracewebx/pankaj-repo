@@ -44,16 +44,14 @@ export default function Home() {
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       {/* {loading && <div>Loading...</div>} */}
       <CustomView condition={browserName === "Safari"}>
-        <video
-          ref={safariVideoRef}
-          autoPlay
-          playsInline
-          style={{ display: loading ? "none" : "block" }}
-        ></video>
-        <button onClick={handlePermissionsSafari}>
+        <video ref={safariVideoRef} autoPlay playsInline></video>
+        <button
+          className="bg-red-500	text-white	px-3.5 py-5"
+          onClick={handlePermissionsSafari}
+        >
           Click for Camera & audio Permission
         </button>
-        Safari
+        <p className="text-red-600	">Safari</p>
       </CustomView>
       <CustomView condition={browserName === "Chrome"}>
         <video
@@ -71,7 +69,7 @@ export default function Home() {
           playsInline
           style={{ display: loading ? "none" : "block" }}
         ></video>
-        Firefox
+        <p className="text-red-600	"> Firefox</p>
       </CustomView>
     </main>
   );
