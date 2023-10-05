@@ -93,10 +93,11 @@ export default function Home() {
       {/* {loading && <div>Loading...</div>} */}
       <CustomView condition={browserName === "Mobile Safari"}>
         <video
-          ref={safariVideoRef}
           autoPlay={true}
           playsInline={true}
           muted={true}
+          ref={safariVideoRef}
+          id="videoElement"
         ></video>
         <button
           className="bg-red-500	text-white	px-3.5 py-5"
