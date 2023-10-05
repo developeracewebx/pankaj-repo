@@ -27,7 +27,9 @@ export default function Home() {
       videoRef.current.srcObject = stream;
       setLoading(false);
       console.log("Camera access granted!");
+      alert("if condition work");
     } catch (err) {
+      alert("else cond", err.message);
       console.error(err.message);
     }
   };
