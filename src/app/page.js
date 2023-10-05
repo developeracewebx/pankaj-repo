@@ -23,11 +23,17 @@ export default function Home() {
   const handlePermissionsSafari = async (videoRef) => {
     let permissions = { video: true, audio: true };
     try {
-      const stream = await navigator.mediaDevices.getUserMedia(permissions);
-      videoRef.current.srcObject = stream;
-      setLoading(false);
-      console.log("Camera access granted!");
-      alert("if condition work");
+      if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        const stream = await navigator.mediaDevices.getUserMedia(permissions);
+        videoRef.current.srcObject = stream;
+        setLoading(false);
+        console.log("Camera access granted!");
+        alert("if condition work");
+      } else {
+        // Handle the case where getUserMedia is not supported
+        alert(`else part: 'getUserMedia is not supported in this browser.'`);
+        console.error("getUserMedia is not supported in this browser.");
+      }
     } catch (err) {
       alert("else path", err);
       console.error(err);
