@@ -8,17 +8,17 @@ export default function Home() {
   const firefoxVideoRef = useRef();
   const [loading, setLoading] = useState(true);
 
-  // const handlePermissions = async (videoRef) => {
-  //   let permissions = { video: true, audio: true };
-  //   try {
-  //     const stream = await navigator.mediaDevices.getUserMedia(permissions);
-  //     videoRef.current.srcObject = stream;
-  //     setLoading(false);
-  //     console.log("Camera access granted!");
-  //   } catch (err) {
-  //     console.error(err.message);
-  //   }
-  // };
+  const handlePermissions = async (videoRef) => {
+    let permissions = { video: true, audio: true };
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia(permissions);
+      videoRef.current.srcObject = stream;
+      setLoading(false);
+      console.log("Camera access granted!");
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
 
   const handlePermissionsSafari = async (videoRef) => {
     let permissions = { video: true, audio: true };
@@ -80,36 +80,35 @@ export default function Home() {
   };
 
   useEffect(() => {
-    handlePermissionsSafari();
-    // if (browserName === "Chrome") {
-    //   handlePermissionsSafari();
-    // } else if (browserName === "Firefox") {
-    //   handlePermissionsSafari();
-    // }
+    if (browserName === "Chrome") {
+      handlePermissionsSafari();
+    } else if (browserName === "Firefox") {
+      handlePermissionsSafari();
+    }
   }, [browserName]);
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <h1 className="text-2xl	text-red-500	">{browserName}</h1>
       {/* {loading && <div>Loading...</div>} */}
-      {/* <CustomView > */}
-      <video
-        autoPlay={true}
-        playsInline={true}
-        muted={true}
-        ref={safariVideoRef}
-        id="videoElement"
-      ></video>
-      <button
-        className="bg-red-500	text-white	px-3.5 py-5"
-        onClick={handlePermissionsSafari}
-      >
-        Click for Camera & audio Permission
-      </button>
-      <p className="text-red-600	">Safari</p>
-      {/* </CustomView> */}
+      <CustomView condition={browserName === "Mobile Safari"}>
+        <video
+          autoPlay={true}
+          playsInline={true}
+          muted={true}
+          ref={safariVideoRef}
+          id="videoElement"
+        ></video>
+        <button
+          className="bg-red-500	text-white	px-3.5 py-5"
+          onClick={handlePermissionsSafari}
+        >
+          Click for Camera & audio Permission
+        </button>
+        <p className="text-red-600	">Safari</p>
+      </CustomView>
 
-      {/* <CustomView condition={browserName === "Safari"}>
+      <CustomView condition={browserName === "Safari"}>
         <video
           autoPlay={true}
           playsInline={true}
@@ -142,7 +141,7 @@ export default function Home() {
           playsInline
         ></video>
         <p className="text-red-600	"> Firefox</p>
-      </CustomView> */}
+      </CustomView>
     </main>
   );
 }
